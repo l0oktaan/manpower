@@ -16,4 +16,8 @@ class LevelHold extends Model
     public function positions(){
         return $this->hasMany('App\Position');
     }
+    public function changes(){
+        return $this->hasMany('App\Change');
+    }
+
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Position;
 use Illuminate\Http\Request;
+use App\Http\Resources\PositionResource;
+use Symfony\Component\HttpFoundation\Response;
 
 class PositionController extends Controller
 {
@@ -14,7 +16,10 @@ class PositionController extends Controller
      */
     public function index()
     {
-        //
+        $position = new Position;
+        $position = Position::orderBy('no')
+                ->get();
+        return PositionResource::collection($position);
     }
 
     /**
@@ -46,7 +51,11 @@ class PositionController extends Controller
      */
     public function show(Position $position)
     {
-        //
+        return new PositionResource($position);
+        // $position = new Position;
+        // $position = Position::orderBy('no')
+        //         ->get();
+        return PositionResource::collection($position);
     }
 
     /**
@@ -55,7 +64,7 @@ class PositionController extends Controller
      * @param  \App\Position  $position
      * @return \Illuminate\Http\Response
      */
-    public function edit(Position $position)
+    public function edit(Position $position,Request $request)
     {
         //
     }
@@ -69,7 +78,21 @@ class PositionController extends Controller
      */
     public function update(Request $request, Position $position)
     {
-        //
+        // return $request;
+        // $position->name1_id = $request->name1_id;
+        // $position->name2_id = $request->name2_id;
+        // $position->level_frame_id = $request->level_frame_id;
+        // $position->level_hold_id = $request->level_hold_id;
+        // $position->section_id = $request->section_id;
+        // $position->division_id = $request->division_id;
+        // $position->status = $request->status;
+        // $position->description = $request->description;
+        // $position->update();
+        $position->update($request->all());
+        return response([
+            'data' => new PositionResource($position)
+        ],Response::HTTP_CREATED);
+
     }
 
     /**

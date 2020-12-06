@@ -8,7 +8,7 @@ use App\LevelFrame;
 use App\LevelHold;
 use App\PositionName1;
 use App\PositionName2;
-
+use App\Change;
 use Illuminate\Database\Eloquent\Model;
 
 class Position extends Model
@@ -34,13 +34,19 @@ class Position extends Model
         return $this->belongsTo('App\LevelHold');
     }
     public function position_name1(){
-        return $this->belongsTo('App\PositionName1');
+        return $this->belongsTo('App\PositionName1','name1_id');
     }
     public function position_name2(){
-        return $this->belongsTo('App\PositionName2');
+        return $this->belongsTo('App\PositionName2','name2_id');
     }
     public function section(){
         return $this->belongsTo('App\Section');
     }
-
+    public function changes(){
+        // $change = Change::orderBy('id')
+        //         ->where('position_id','=',$this->id)
+        //         ->get();
+        // return $change;
+        return $this->hasMany('App\Change')->orderBy('id','desc');
+    }
 }

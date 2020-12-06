@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Employee;
+use App\PrefixName;
 use Illuminate\Http\Request;
 
-class EmployeeController extends Controller
+class PrefixNameController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +14,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employee = new Employee;
-        $employee = Employee::where('status',1)
-                ->orderBy('id')
-                ->get();
-        return $employee;
+        //
     }
 
     /**
@@ -45,10 +41,10 @@ class EmployeeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Employee  $employee
+     * @param  \App\PrefixName  $prefixName
      * @return \Illuminate\Http\Response
      */
-    public function show(Employee $employee)
+    public function show(PrefixName $prefixName)
     {
         //
     }
@@ -56,10 +52,10 @@ class EmployeeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Employee  $employee
+     * @param  \App\PrefixName  $prefixName
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit(PrefixName $prefixName)
     {
         //
     }
@@ -68,10 +64,10 @@ class EmployeeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Employee  $employee
+     * @param  \App\PrefixName  $prefixName
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(Request $request, PrefixName $prefixName)
     {
         //
     }
@@ -79,10 +75,10 @@ class EmployeeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Employee  $employee
+     * @param  \App\PrefixName  $prefixName
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy(PrefixName $prefixName)
     {
         //
     }

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Employee;
+use App\Change;
+use App\Position;
 use Illuminate\Http\Request;
+use App\Http\Resources\ChangeResource;
+use Symfony\Component\HttpFoundation\Response;
 
-class EmployeeController extends Controller
+class ChangeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +17,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employee = new Employee;
-        $employee = Employee::where('status',1)
-                ->orderBy('id')
-                ->get();
-        return $employee;
+        // $change = New Change;
+        // $change = Change::orderBy('id')->get();
+        // return $change;
     }
 
     /**
@@ -39,16 +40,29 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return "add cahnge";
+        $change = new Change($request->all());
+        $change->save();
+
+            $position = Position::findOrFail($change->position_id);
+            if (in_array($change->type,[4,5])){
+                $position->level_holde_id = 13;
+            }
+            $position->level_hold_id = $change->level_hold_id;
+            $position->update();
+
+        return response([
+            'data' => new ChangeResource($change)
+        ],Response::HTTP_CREATED);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Employee  $employee
+     * @param  \App\Change  $change
      * @return \Illuminate\Http\Response
      */
-    public function show(Employee $employee)
+    public function show(Change $change)
     {
         //
     }
@@ -56,10 +70,10 @@ class EmployeeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Employee  $employee
+     * @param  \App\Change  $change
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit(Change $change)
     {
         //
     }
@@ -68,10 +82,10 @@ class EmployeeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Employee  $employee
+     * @param  \App\Change  $change
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(Request $request, Change $change)
     {
         //
     }
@@ -79,10 +93,10 @@ class EmployeeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Employee  $employee
+     * @param  \App\Change  $change
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy(Change $change)
     {
         //
     }
