@@ -19,7 +19,7 @@ class PositionResource extends JsonResource
             'id' => $this->id,
             'no' => $this->no,
             'name1' => $this->position_name1->name,
-            'name2' => $this->position_name1->name,
+            'name2' => $this->position_name2->name,
             'level_frame' => $this->level_frame->name,
             'level_hold' => $this->level_hold->name,
             'section' => $this->section->name,
