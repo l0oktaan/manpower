@@ -29,6 +29,8 @@ class CreatePositionsTable extends Migration
             $table->smallInteger('division_id')->unsigned();
             $table->foreign('division_id')->references('id')->on('divisions')->onDelete('cascade');
             $table->smallInteger('status')->nullable();
+            $table->smallInteger('employee_id')->unsigned();
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
             $table->string('description',500)->nullable();
             $table->timestamps();
         });

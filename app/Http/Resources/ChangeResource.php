@@ -19,6 +19,7 @@ class ChangeResource extends JsonResource
             'employee_id' => $this->employee_id,
             'employee_name' => $this->employee->prefix->prefix
                 . '' . $this->employee->name . ' ' . $this->employee->surname,
+            // 'employee_name' => $this->employee->name . ' ' . $this->employee->surname,
             'type' => $this->type,
             'command_no' => $this->command_no,
             'command_date' => $this->command_date,

@@ -2,13 +2,12 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Resources\ChangeResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PositionResource extends JsonResource
+class PositionCollection extends JsonResource
 {
     /**
-     * Transform the resource into an array.
+     * Transform the resource collection into an array.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
@@ -25,10 +24,9 @@ class PositionResource extends JsonResource
             'section' => $this->section->name,
             'division' => $this->section->division->name,
             'status' => $this->status,
-            'employee' => $this->employee,
+            // 'employee' => $this->employee,
             'description' => $this->description,
-
-            // 'changes' => ChangeResource::collection($this->changes),
+            'changes' => ChangeResource::collection($this->changes),
         ];
     }
 }

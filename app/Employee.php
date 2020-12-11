@@ -23,8 +23,11 @@ class Employee extends Model
     public function changes(){
         return $this->hasMany('App\Change');
     }
+    public function positions(){
+        return $this->hasMany('App\Position');
+    }
     public function prefix(){
-        return $this->belongsTo('App\PrefixName');
+        return $this->belongsTo('App\PrefixName','prefix_id','no');
     }
 
 }

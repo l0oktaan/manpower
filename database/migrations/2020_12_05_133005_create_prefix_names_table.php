@@ -15,6 +15,7 @@ class CreatePrefixNamesTable extends Migration
     {
         Schema::create('prefix_names', function (Blueprint $table) {
             $table->smallIncrements('id');
+            $table->smallInteger('no')->unsigned()->index();
             $table->string('prefix');
             $table->tinyInteger('status');
             $table->timestamps();

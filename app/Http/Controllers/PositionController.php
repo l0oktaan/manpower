@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Position;
 use Illuminate\Http\Request;
 use App\Http\Resources\PositionResource;
+use App\Http\Resources\PositionCollection;
 use Symfony\Component\HttpFoundation\Response;
 
 class PositionController extends Controller
@@ -14,11 +15,21 @@ class PositionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function empty(){
+        $position = new Position;
+        $position = Position::orderBy('no')
+                ->where('status',2)
+                ->get();
+        // return $position;
+        return PositionResource::collection($position);
+    }
     public function index()
     {
         $position = new Position;
         $position = Position::orderBy('no')
                 ->get();
+        // return $position;
         return PositionResource::collection($position);
     }
 
@@ -51,11 +62,11 @@ class PositionController extends Controller
      */
     public function show(Position $position)
     {
-        return new PositionResource($position);
-        // $position = new Position;
-        // $position = Position::orderBy('no')
-        //         ->get();
-        return PositionResource::collection($position);
+        // return new PositionResource($position);
+        $iPosition = new Position;
+        $iPosition = Position::where('no','=',$position->id)
+                ->get();
+        return PositionCollection::collection($iPosition);
     }
 
     /**

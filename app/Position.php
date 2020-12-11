@@ -42,6 +42,9 @@ class Position extends Model
     public function section(){
         return $this->belongsTo('App\Section');
     }
+    public function employee(){
+        return $this->belongsTo('App\Employee');
+    }
     public function changes(){
         // $change = Change::orderBy('id')
         //         ->where('position_id','=',$this->id)

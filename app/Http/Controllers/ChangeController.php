@@ -17,9 +17,9 @@ class ChangeController extends Controller
      */
     public function index()
     {
-        // $change = New Change;
-        // $change = Change::orderBy('id')->get();
-        // return $change;
+        $change = New Change;
+        $change = Change::orderBy('id')->get();
+        return ChangeResource::collection($change);
     }
 
     /**
@@ -64,7 +64,7 @@ class ChangeController extends Controller
      */
     public function show(Change $change)
     {
-        //
+        return new ChangeResource($change);
     }
 
     /**
