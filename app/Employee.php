@@ -27,7 +27,6 @@ class Employee extends Model
         return $this->hasMany('App\Position');
     }
     public function prefix(){
-        return $this->belongsTo('App\PrefixName','prefix_id','no');
+        return $this->belongsTo('App\PrefixName');
     }
-
 }

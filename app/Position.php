@@ -52,4 +52,8 @@ class Position extends Model
         // return $change;
         return $this->hasMany('App\Change')->orderBy('id','desc');
     }
+
+    public function division(){
+        return $this->belongsTo('App\Division');
+    }
 }

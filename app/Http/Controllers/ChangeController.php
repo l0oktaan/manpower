@@ -18,7 +18,15 @@ class ChangeController extends Controller
     public function index()
     {
         $change = New Change;
-        $change = Change::orderBy('id')->get();
+        $change = Change::with([
+            'employee',
+            'position',
+            'level_hold',
+            // 'prefix'
+        ])
+            ->orderBy('updated_date')->get();
+            // ->orderBy('updated_date')->paginate(15);
+        // return $change;
         return ChangeResource::collection($change);
     }
 

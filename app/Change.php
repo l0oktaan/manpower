@@ -16,7 +16,9 @@ class Change extends Model
         'command_no',
         'command_date',
         'status',
-        'description'
+        'description',
+        'updated_date',
+        'updated_by'
     ];
 
 
@@ -32,4 +34,7 @@ class Change extends Model
         return $this->belongsTo('App\Position');
     }
 
+    public function prefix(){
+        return $this->belongsTo('App\PrefixName');
+    }
 }

@@ -18,7 +18,15 @@ class PositionController extends Controller
 
     public function empty(){
         $position = new Position;
-        $position = Position::orderBy('no')
+        $position = Position::with([
+            'position_name1',
+            'position_name2',
+            'level_frame',
+            'level_hold',
+            'section',
+            'division',
+            'employee'
+        ])
                 ->where('status',2)
                 ->get();
         // return $position;

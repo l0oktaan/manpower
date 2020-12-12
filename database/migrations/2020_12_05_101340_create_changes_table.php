@@ -22,10 +22,12 @@ class CreateChangesTable extends Migration
             $table->foreign('position_id')->references('id')->on('positions')->onDelete('cascade');
             $table->smallInteger('level_hold_id')->unsigned();
             $table->foreign('level_hold_id')->references('id')->on('level_holds')->onDelete('cascade');
-            $table->string('command_no');
-            $table->date('command_date');
+            $table->string('command_no')->nullable();
+            $table->date('command_date')->nullable();
             $table->tinyInteger('status')->nullable();
             $table->string('description')->nullable();
+            $table->date('updated_date')->nullable();
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }
