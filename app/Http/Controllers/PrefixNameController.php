@@ -14,7 +14,13 @@ class PrefixNameController extends Controller
      */
     public function index()
     {
-        //
+        // return PrefixName::all();
+        $prefix = PrefixName::where('prefix','<>','')
+                    ->where('status',2)
+                    ->get();
+
+        return $prefix;
+
     }
 
     /**

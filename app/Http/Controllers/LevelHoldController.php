@@ -14,7 +14,7 @@ class LevelHoldController extends Controller
      */
     public function index()
     {
-        //
+        return LevelHold::all();
     }
 
     /**

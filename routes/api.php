@@ -21,4 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::Resource('/change', 'ChangeController');
 Route::Resource('/employee', 'EmployeeController');
 Route::Resource('/position', 'PositionController');
+Route::Resource('/prefix', 'PrefixNameController');
+Route::Resource('/level_hold', 'LevelHoldController');
 Route::get('/empty', 'PositionController@empty')->name('empty');
+// Route::get('/employee', 'PositionController@empty')->name('empty');

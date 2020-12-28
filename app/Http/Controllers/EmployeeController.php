@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Employee;
 use Illuminate\Http\Request;
+use App\Http\Requests\EmployeeRequest;
+use App\Http\Resources\EmployeeResource;
 
 class EmployeeController extends Controller
 {
@@ -12,8 +14,34 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function Search(Request $request)
     {
+        $employee = Employee::query();
+
+        if ($request->get('filter')){
+            $filter = $request->get('filter');
+            $employee->where('name','like','%' . $filter . '%')
+                    ->orWhere('surname','like','%' . $filter . '%')
+                    ->orWhere('citizen_id',$filter)
+                    ->get();
+            return new EmployeeResource($employee);
+        }
+    }
+    public function index(Request $request)
+    {
+
+
+        if ($request->get('filter')){
+
+            $employee = Employee::query();
+            $filter = $request->get('filter');
+            $employee->where('name','like','%' . $filter . '%')
+                    ->orWhere('surname','like','%' . $filter . '%')
+                    ->orWhere('citizen_id',$filter);
+
+            return EmployeeResource::collection($employee->get());
+        }
+
         $employee = new Employee;
         $employee = Employee::where('status',1)
                 ->orderBy('id')
@@ -37,9 +65,12 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmployeeRequest $request)
     {
-        //
+        // return $request;
+        $employee = new Employee($request->all());
+        $employee->save();
+        return new EmployeeResource($employee);
     }
 
     /**
